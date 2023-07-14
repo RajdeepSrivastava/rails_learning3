@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tag: one
+  tag_type: Tag
+  taggable: one
+  taggable_type: Taggable
+
+two:
+  tag: two
+  tag_type: Tag
+  taggable: two
+  taggable_type: Taggable

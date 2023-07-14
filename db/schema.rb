@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_14_094820) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_14_115057) do
+  create_table "actors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "actors_movies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "actors_movies"
+    t.bigint "actor_id", null: false
+    t.bigint "movie_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["actor_id"], name: "index_actors_movies_on_actor_id"
+    t.index ["movie_id"], name: "index_actors_movies_on_movie_id"
+  end
+
   create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -53,6 +69,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_094820) do
     t.index ["employee_id"], name: "index_employments_on_employee_id"
   end
 
+  create_table "movies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "actors_movies", "actors"
+  add_foreign_key "actors_movies", "movies"
   add_foreign_key "employments", "companies"
   add_foreign_key "employments", "employees"
 end
